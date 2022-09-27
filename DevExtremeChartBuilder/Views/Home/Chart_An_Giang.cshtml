@@ -9,14 +9,24 @@
 
 
 
-@{ 
+@{
     List<SelectListItem> selectedList = ViewBag.listItems;
-    var selected = selectedList.FirstOrDefault(item=>item.Selected == true);
+    var selected = selectedList.FirstOrDefault(item => item.Selected == true);
 }
 
 @selected.Value
-
 @ViewBag.strDDLValue
+
+<script type="text/javascript">
+    $(function () {
+        $("#yourDropName").on("change", function () {
+            var q = $("#yourDropName").val();
+
+            console.log("val = " + q);
+            
+        });
+    });
+</script>
 @(Html.DevExtreme().Chart()
         .ID("chart_so_dv_hc_an_giang")
         .CommonSeriesSettings(s => s
