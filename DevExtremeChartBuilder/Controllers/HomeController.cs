@@ -113,6 +113,14 @@ namespace DevExtremeChartBuilder.Controllers {
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Chart_An_Giang(FormCollection form)
+        {
+            string strDDLValue = form["yourDropName"].ToString();
+
+            return View();
+        }
+
         public async Task<ActionResult> Chart_Ba_ria_Vung_tau()
         {
             So_don_vi_hanh_chinh[] jwt = await RestSharpAPI.Lay_so_don_vi_hanh_chinh();
