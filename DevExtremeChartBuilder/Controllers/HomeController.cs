@@ -117,7 +117,7 @@ namespace DevExtremeChartBuilder.Controllers {
         public ActionResult Chart_An_Giang(FormCollection form)
         {
             string strDDLValue = form["yourDropName"].ToString();
-
+            ViewBag.strDDLValue = strDDLValue;
             return View();
         }
 
