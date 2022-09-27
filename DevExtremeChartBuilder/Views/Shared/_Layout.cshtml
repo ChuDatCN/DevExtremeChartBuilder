@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>DevExtremeChartBuilder</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    @* Uncomment to use the HtmlEditor control *@
+    @* <script src="https://unpkg.com/devextreme-quill@21_2/dist/dx-quill.min.js"></script> *@
+
+    @Styles.Render("~/Content/bundle")
+    @Styles.Render("~/Content/DevExtremeBundle")
+    @Scripts.Render("~/Scripts/bundle")
+    @Scripts.Render("~/Scripts/DevExtremeBundle")
+</head>
+
+<body style="padding-top: 5rem;">
+
+    <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-md">
+        <a class="navbar-brand" href="/">DevExtremeChartBuilder</a>
+
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="active nav-item"><a href="/Home/Table_so_dv_hc" class="nav-link">So don vi hanh chinh</a></li>
+                <li class="nav-item"><a href="/Home/Chart_so_dv_hc_2018" class="nav-link">Chart 2018</a></li>
+                <li class="nav-item"><a href="/Home/Chart_so_dv_hc_2021" class="nav-link">Chart 2021</a></li>
+                <li class="nav-item"><a href="/Home/Chart_An_Giang" class="nav-link">An Giang</a></li>
+                <li class="nav-item"><a href="/Home/Chart_Ba_ria_Vung_tau" class="nav-link">Ba ria - Vung Tau</a></li>
+                <li class="nav-item"><a href="/Home/SubjectArea" class="nav-link">Subject Area</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main role="main" class="container">
+        @RenderBody()
+    </main>
+</body>
+
+</html>

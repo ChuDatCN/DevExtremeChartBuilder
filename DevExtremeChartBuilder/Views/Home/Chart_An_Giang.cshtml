@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Chart_An_Giang";
+}
+<h2>Bar chart số đơn vị hành chính năm 2021</h2>
+<h2>Số đơn vị hành chính của tỉnh An Giang qua các năm</h2>
+
+@Html.DropDownList("yourDropName", ViewBag.listItems as List<SelectListItem>, new { @class = "form-control" })
+
+
+
+@{ 
+    List<SelectListItem> selectedList = ViewBag.listItems;
+    var selected = selectedList.FirstOrDefault(item=>item.Selected == true);
+}
+@selected.Value
+
+
+@(Html.DevExtreme().Chart()
+        .ID("chart_so_dv_hc_an_giang")
+        .CommonSeriesSettings(s => s
+            .ArgumentField("ky_du_lieu")
+            .Type(SeriesType.Bar)
+            .HoverMode(ChartSeriesHoverMode.AllArgumentPoints)
+            .SelectionMode(ChartSeriesSelectionMode.AllArgumentPoints)
+            .Label(l => l
+                .Visible(true)
+                .Format(f => f
+                    .Type(Format.FixedPoint)
+                    .Precision(0)
+                )
+            )
+        )
+        .Series(s =>
+        {
+            s.Add().ValueField("nong_thon").Name("Nông thôn");
+            s.Add().ValueField("kinh_te_dac_biet").Name("Kinh tế đặc biệt");
+            s.Add().ValueField("hai_dao").Name("Hải đảo");
+        })
+        .Title("Số đơn vị hành chính")
+        .Legend(l => l
+            .VerticalAlignment(VerticalEdge.Bottom)
+            .HorizontalAlignment(HorizontalAlignment.Center)
+        )
+         .ZoomAndPan(z => z
+            .ArgumentAxis(ChartZoomAndPanMode.Both)
+            .ValueAxis(ChartZoomAndPanMode.Both)
+            .DragToZoom(true)
+            .AllowMouseWheel(true)
+            .PanKey(EventKeyModifier.Shift)
+        )
+        .Export(e => e.Enabled(true))
+        .OnPointClick(@<text>
+        function(e) {
+            e.target.select();
+        }
+    </text>)
+        .DataSource(ViewBag.jwt_AnGiang)
+    )

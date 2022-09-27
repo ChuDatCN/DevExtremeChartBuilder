@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "SubjectArea";
+}
+
+<h2>SubjectArea</h2>
+
+
+@(Html.DevExtreme().DataGrid()
+        .ID("subjectArea")
+        .ShowBorders(true)
+        .Columns(columns => {
+            columns.Add()
+                .DataField("subject_area_id");
+            columns.Add()
+                .DataField("business_process_area")
+                .Width(250);
+            columns.Add()
+                .Caption("Update at")
+                .DataField("updated_at")
+                .DataType(GridColumnDataType.DateTime)
+                .Format(Format.ShortDateShortTime);
+            columns.Add()
+                .DataField("subject_area_name");
+            columns.Add()
+                .DataField("subject_area_key")
+                .Caption("Subject Area Key")
+                .DataType(GridColumnDataType.Number);
+        })
+        .DataSource(ViewBag.jwt)
+)

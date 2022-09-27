@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Chart_so_dv_hc_2021";
+}
+
+<h2>Chart_so_dv_hc_2021</h2>
+
+
+
+@(Html.DevExtreme().Chart()
+    .ID("chart_so_dv_hc_2021")
+    .CommonSeriesSettings(s => s
+        .ArgumentField("tieu_chi_phan_loai")
+        .Type(SeriesType.Bar)
+        .HoverMode(ChartSeriesHoverMode.AllArgumentPoints)
+        .SelectionMode(ChartSeriesSelectionMode.AllArgumentPoints)
+        .Label(l => l
+            .Visible(true)
+            .Format(f => f
+                .Type(Format.FixedPoint)
+                .Precision(0)
+            )
+        )
+    )
+    .Series(s => {
+        s.Add().ValueField("nong_thon").Name("Nông thôn");
+        s.Add().ValueField("kinh_te_dac_biet").Name("Kinh tế đặc biệt");
+        s.Add().ValueField("hai_dao").Name("Hải đảo");
+    })
+    .Title("Số đơn vị hành chính")
+    .Legend(l => l
+        .VerticalAlignment(VerticalEdge.Bottom)
+        .HorizontalAlignment(HorizontalAlignment.Center)
+    )
+     .ZoomAndPan(z => z
+        .ArgumentAxis(ChartZoomAndPanMode.Both)
+        .ValueAxis(ChartZoomAndPanMode.Both)
+        .DragToZoom(true)
+        .AllowMouseWheel(true)
+        .PanKey(EventKeyModifier.Shift)
+    )
+     .ScrollBar(s => s.Visible(true))
+    .Export(e => e.Enabled(true))
+    .OnPointClick(@<text>
+        function(e) {
+            e.target.select();
+        }
+    </text>)
+    .DataSource(ViewBag.jwt_2021)
+)

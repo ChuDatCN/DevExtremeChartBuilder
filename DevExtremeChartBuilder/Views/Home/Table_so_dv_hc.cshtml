@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Table_so_dv_hc";
+}
+
+<h2>Bảng thống kê số đơn vị hành chính</h2>
+
+
+@(Html.DevExtreme().DataGrid()
+        .ID("Table_so_dv_hc")
+        .ShowBorders(true)
+        .GroupPanel(groupPanel => groupPanel.Visible(true))
+        .SearchPanel(searchPanel => searchPanel.Visible(true))
+        .Columns(columns => {
+            columns.Add()
+                .DataField("don_vi_bao_cao");
+            columns.Add()
+                .DataField("hai_dao");
+
+            columns.Add()
+                .DataField("kinh_te_dac_biet");
+            columns.Add()
+                .DataField("nong_thon");
+            columns.Add().DataField("phan_cap");
+            columns.Add().DataField("parent_id");
+            columns.Add().DataField("entity_id");
+            columns.Add().DataField("ky_du_lieu");
+            columns.Add().DataField("tieu_chi_phan_loai");
+            columns.Add().DataField("don_vi_nhan_bao_cao");
+            columns.Add().DataField("id");
+            columns.Add().DataField("do_thi");
+        })
+        .Export(export => export.Enabled(true))
+        
+        .DataSource(ViewBag.jwt)
+
+)
+@(Html.DevExtreme().Button()
+    .Text("Refresh Grid")
+    .OnClick("reloadData")
+)
+
+<script type="text/javascript">
+    function reloadData() {
+        $("Table_so_dv_hc").dxDataGrid("getDataSource").reload();
+    }
+</script>
